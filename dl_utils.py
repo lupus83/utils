@@ -8,7 +8,8 @@ class Superconvergence(optim.lr_scheduler._LRScheduler):
                 max_lr,
                 epoch_annihilation: int,
                 start_lr_fraction: int=50,
-                last_epoch: int=-1):
+                last_epoch: int=-1
+                ):
         """
             PyTorch implementation of Triangle Scheduler with annihilation phase as in
             Superconvergence paper https://arxiv.org/abs/1708.07120
@@ -49,8 +50,6 @@ class Trapezoid(optim.lr_scheduler._LRScheduler):
             PyTorch implementation of Trapezoid Scheduler https://arxiv.org/abs/1802.08770
             Lazy: n_iterations is the total amount of iterations that this scheduler will be used for!
         """
-        
-
         self.n_iters = n_iterations
         self.max_lr = max_lr
         if start_lr is None:
