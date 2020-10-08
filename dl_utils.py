@@ -21,7 +21,7 @@ class Superconvergence(optim.lr_scheduler._LRScheduler):
         x_steps = epoch_annihilation / 2
         self.epoch_annihilation = epoch_annihilation
         self.lr_step = (self.max_lr - self.init_lr) / x_steps
-        
+
         super(Superconvergence, self).__init__(optimizer, last_epoch)
 
     def get_lr(self):
@@ -54,11 +54,11 @@ class Trapezoid(optim.lr_scheduler._LRScheduler):
         self.n_iters = n_iterations
         self.max_lr = max_lr
         if start_lr is None:
-            self.start_lr = max_lr / 10
+            self.start_lr = max_lr / 10  # start with a lr 10 times smaller than normal lr
         else:
             self.start_lr = start_lr
-        self.stop_warmup = int(0.1 * n_iterations)
-        self.start_decline = int(0.8 * n_iterations)
+        self.stop_warmup = int(0.1 * n_iterations)  # 10% of iterations/epochs warmup
+        self.start_decline = int(0.8 * n_iterations)  # starting at 80% of iterations with decay
         self.start_annihilate = int(0.95 * n_iterations) if annihilate else n_iterations
 
         super(Trapezoid, self).__init__(optimizer, last_epoch)
